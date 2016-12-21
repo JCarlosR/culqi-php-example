@@ -3,20 +3,30 @@
   <head>
     <meta charset="utf-8">
     <title>Culqi Test</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   </head>
   <body>
-    <h1>Culqi Test</h1>
-    <a id="miBoton" href="#" >Pagar</a>
+    <div class="container">
+      <h1>Culqi PHP Example</h1>
+      <a id="miBoton" class="btn btn-primary" href="#" >Pay</a>
+      <br/><br/><br/>
+      <div class="panel panel-default" id="response-panel">
+        <div class="panel-heading">Response</div>
+        <div class="panel-body" id="response">
+        </div>
+      </div>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="https://integ-pago.culqi.com/js/v1"></script>
+    <script src="http://192.168.0.107:8001/js/v2"></script>
     <script>
-       Culqi.codigoComercio = '[URL_COD_COMERCE]';
+      $("#response-panel").hide();
+       Culqi.codigoComercio = 'live_SZVtOA5x9n8c';
        Culqi.configurar({
             nombre: 'Mi Comercio',
             orden: 'x123131',
             moneda: 'PEN',
             descripcion: 'Pago de matrícula',
-            monto: 200
+            monto: 60000
        });
        $('#miBoton').on('click', function (e) {
             // Abre el formulario con las opciones de Culqi.configurar
@@ -27,16 +37,15 @@
         function culqi() {
           if (Culqi.token) {
             // Imprimir Token
-            $("#btn_pagar").submit(function(){
               $.ajax({
                  type: 'POST',
-                 url: 'server.php',
+                 url: 'http://localhost:8000/server.php',
                  data: { token: Culqi.token.id},
                  success: function(response) {
+                   $("#response-panel").show();
+                   $("#response").html(response);
                  }
               });
-            });
-            window.location.replace("http://localhost:8000/server.php?token="+Culqi.token.id);
           } else {
             // Hubo un problema...
             // Mostramos JSON de objeto error en consola

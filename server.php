@@ -9,7 +9,7 @@ try {
   require 'vendor/autoload.php';
 
   // Configurar tu API Key y autenticación
-  $SECRET_API_KEY = "[API_KEY]";
+  $SECRET_API_KEY = "gjkf2ehJxmuXnjwanj3AIbCSrncDMEvk29sHR/n8ZwM=";
   $culqi = new Culqi\Culqi(array('api_key' => $SECRET_API_KEY));
 
   $pedidoId = time();
@@ -28,14 +28,14 @@ try {
           "installments" => 0,
           "last_name" => "Muro",
           "metadata" => "",
-          "order_id" => "testorder01",
+          "order_id" => "test_ord_01",
           "phone_number" => 3333339,
           "product_description" => "Venta de prueba",
-          "token" => $_GET['token']
+          "token" => $_POST["token"]
       )
   );
   // Respuesta
-  print_r($cargo);
+  echo json_encode($cargo);
 
 } catch (Exception $e) {
   echo $e->getMessage();
