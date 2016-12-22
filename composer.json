@@ -1,0 +1,12 @@
+{
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/culqi/culqi-php",
+            "reference":"develop"
+        }
+    ],
+    "require": {
+        "culqi/culqi-php": "dev-develop"
+    }
+}
