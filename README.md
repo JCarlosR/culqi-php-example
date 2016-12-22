@@ -1,5 +1,5 @@
 # culqi-php-example
-Culqi PHP Example
+API V2 - Culqi PHP Example
 
 This an example of [Culpi-PHP 1.2.6](https://github.com/culqi/culqi-php/tree/develop) (work in progress)
 

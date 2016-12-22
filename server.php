@@ -9,10 +9,8 @@ try {
   require 'vendor/autoload.php';
 
   // Configurar tu API Key y autenticación
-  $SECRET_API_KEY = "gjkf2ehJxmuXnjwanj3AIbCSrncDMEvk29sHR/n8ZwM=";
+  $SECRET_API_KEY = "sk_test_UTCQSGcXW8bCyU59";
   $culqi = new Culqi\Culqi(array('api_key' => $SECRET_API_KEY));
-
-  $pedidoId = time();
 
   // Creando Cargo a una tarjeta
   $cargo = $culqi->Cargos->create(
@@ -24,17 +22,17 @@ try {
           "currency_code" => "PEN",
           "cvv" => "123",
           "email" => "wmuro@me.com",
-          "first_name" => "William",
+          "first_name" => "Willy",
           "installments" => 0,
           "last_name" => "Muro",
           "metadata" => "",
-          "order_id" => "test_ord_01",
+          "order_id" => time(),
           "phone_number" => 3333339,
           "product_description" => "Venta de prueba",
-          "token" => $_POST["token"]
+          "token_id" => $_POST["token"]
       )
   );
-  // Respuesta
+  // Response
   echo json_encode($cargo);
 
 } catch (Exception $e) {

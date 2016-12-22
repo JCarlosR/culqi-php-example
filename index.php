@@ -17,10 +17,10 @@
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="http://192.168.0.107:8001/js/v2"></script>
+    <script src="https://checkout.culqi.com/js/v2"></script>
     <script>
       $("#response-panel").hide();
-       Culqi.codigoComercio = 'live_SZVtOA5x9n8c';
+       Culqi.codigoComercio = 'pk_test_vzMuTHoueOMlgUPj';
        Culqi.configurar({
             nombre: 'Mi Comercio',
             orden: 'x123131',
@@ -40,10 +40,14 @@
               $.ajax({
                  type: 'POST',
                  url: 'http://localhost:8000/server.php',
-                 data: { token: Culqi.token.id},
+                 data: { token: Culqi.token.id },
                  success: function(response) {
-                   $("#response-panel").show();
-                   $("#response").html(response);
+                   $('#response-panel').show();
+                   $('#response').html(response);
+                 },
+                 error: function(error) {
+                   $('#response-panel').show();
+                   $('#response').html(error);
                  }
               });
           } else {
