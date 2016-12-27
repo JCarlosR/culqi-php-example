@@ -40,7 +40,8 @@
               $.ajax({
                  type: 'POST',
                  url: 'http://localhost:8000/server.php',
-                 data: { token: Culqi.token.id },
+                 data: { token: Culqi.token.id, first_name: Culqi.token.cardholder.first_name,
+                        last_name: Culqi.token.cardholder.last_name, email: Culqi.token.cardholder.email },
                  success: function(response) {
                    $('#response-panel').show();
                    $('#response').html(response);
