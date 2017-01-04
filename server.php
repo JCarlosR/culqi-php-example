@@ -20,7 +20,6 @@ try {
           "amount" => 1000,
           "country_code" => "PE",
           "currency_code" => "PEN",
-          "cvv" => "123",
           "email" => $_POST["email"],
           "first_name" => $_POST["first_name"],
           "installments" => 0,
