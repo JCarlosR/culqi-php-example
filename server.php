@@ -25,7 +25,6 @@ try {
           "installments" => 0,
           "last_name" => $_POST["last_name"],
           "metadata" => "",
-          "order_id" => time(),
           "phone_number" => 3333339,
           "product_description" => "Venta de prueba",
           "token_id" => $_POST["token"]
