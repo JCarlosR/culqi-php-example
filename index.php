@@ -18,21 +18,20 @@
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="https://checkout.culqi.com/js/v2"></script>
+    <script src="https://checkout.culqi.com/v2"></script>
     <script src="waitMe.min.js"></script>
     <script>
       $("#response-panel").hide();
-      Culqi.codigoComercio = 'pk_test_vzMuTHoueOMlgUPj';
-      Culqi.configurar({
-            nombre: 'Mi Comercio',
-            orden: 'x123131',
-            moneda: 'PEN',
-            descripcion: 'Pago de matrícula',
-            monto: 60000
+      Culqi.publicKey = 'pk_test_vzMuTHoueOMlgUPj';
+      Culqi.settings({
+        title: 'Culqi Store',
+        currency: 'PEN',
+        description: 'Polo/remera Culqi lover',
+        amount: 3500
        });
        $('#miBoton').on('click', function (e) {
             // Abre el formulario con las opciones de Culqi.configurar
-            Culqi.abrir();
+            Culqi.open();
             e.preventDefault();
         });
         // Recibimos Token del Culqi.js
@@ -41,16 +40,27 @@
               $(document).ajaxStart(function(){
                 run_waitMe();
               });
-            // Imprimir Token
+              // Imprimir Token
               $.ajax({
                  type: 'POST',
-                 url: 'http://localhost:8000/server.php',
-                 data: { token: Culqi.token.id, first_name: Culqi.token.cardholder.first_name,
-                        last_name: Culqi.token.cardholder.last_name, email: Culqi.token.cardholder.email },
+                 url: '/server.php',
+                 data: { token: Culqi.token.id, installments: Culqi.token.metadata.installments },
                  success: function(response) {
-                   $('#response-panel').show();
-                   $('#response').html(response);
-                   $('body').waitMe('hide');
+                   var data = JSON.parse(response);
+                   if(data.object === "charge"){
+                       $('#response-panel').show();
+                       $('#response').html(data.outcome.user_message);
+                       $('body').waitMe('hide');
+                   } else {
+                      if(data.object === "error"){
+                        $('#response-panel').show();
+                        $('#response').html(data.user_message);
+                        $('body').waitMe('hide');
+                      }
+                      $('body').waitMe('hide');
+                      $('#response-panel').show();
+                      $('#response').html("No tengo mensaje ????");
+                   }
                  },
                  error: function(error) {
                    $('#response-panel').show();
@@ -61,8 +71,9 @@
           } else {
             // Hubo un problema...
             // Mostramos JSON de objeto error en consola
-            console.log(Culqi.error);
-            alert(Culqi.error.mensaje);
+            $('#response-panel').show();
+            $('#response').html(Culqi.error.merchant_message);
+            $('body').waitMe('hide');
           }
         };
         function run_waitMe(){

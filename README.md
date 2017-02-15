@@ -1,13 +1,13 @@
 # culqi-php-example
 API V2 (BETA) - Culqi PHP Example
 
-This an example of [Culpi-PHP 1.2.6 BETA](https://github.com/culqi/culqi-php/tree/develop)
+This an example of [Culpi-PHP 1.3 BETA](https://github.com/culqi/culqi-php/tree/develop)
 
 # Run
 
 ```bash
 $ composer install
-$ php -S localhost:8000
+$ php -S 0.0.0.0:8000
 ```
 
 ### Test Data
@@ -29,6 +29,6 @@ $ php -S localhost:8000
 
 # Licencia
 
-Copyright 2016 Culqi
+Copyright 2017 Culqi
 
 Licensed under the MIT License
