@@ -1,7 +1,7 @@
 # culqi-php-example
-API V2 (BETA) - Culqi PHP Example
+API V2 - Culqi PHP Example
 
-This an example of [Culpi-PHP 1.3 BETA](https://github.com/culqi/culqi-php/tree/develop)
+This an example of [Culpi-PHP 1.3](https://github.com/culqi/culqi-php/)
 
 # Run
 

@@ -18,7 +18,7 @@
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="https://checkout.culqi.com/v2"></script>
+    <script src="https://checkout.culqi.com/plugins/v2/"></script>
     <script src="waitMe.min.js"></script>
     <script>
       $("#response-panel").hide();
@@ -45,27 +45,24 @@
                  type: 'POST',
                  url: '/server.php',
                  data: { token: Culqi.token.id, installments: Culqi.token.metadata.installments },
-                 success: function(response) {
-                   var data = JSON.parse(response);
-                   if(data.object === "charge"){
-                       $('#response-panel').show();
-                       $('#response').html(data.outcome.user_message);
-                       $('body').waitMe('hide');
-                   } else {
-                      if(data.object === "error"){
-                        $('#response-panel').show();
-                        $('#response').html(data.user_message);
-                        $('body').waitMe('hide');
-                      }
-                      $('body').waitMe('hide');
-                      $('#response-panel').show();
-                      $('#response').html("No tengo mensaje ????");
+                 datatype: 'json',
+                 success: function(data) {
+                   var result = "";
+                   if(data.constructor == String){
+                       result = JSON.parse(data);
+                   }
+                   if(data.constructor == Object){
+                       result = JSON.parse(JSON.stringify(data));
+                   }
+                   if(result.object === 'charge'){
+                     resultdiv(result.outcome.user_message);
+                   }
+                   if(result.object === 'error'){
+                       resultdiv(result.user_message);
                    }
                  },
                  error: function(error) {
-                   $('#response-panel').show();
-                   $('#response').html(error);
-                   $('body').waitMe('hide');
+                   resultdiv(error)
                  }
               });
           } else {
@@ -83,6 +80,11 @@
             bg: 'rgba(255,255,255,0.7)',
             color:'#28d2c8'
           });
+        }
+        function resultdiv(message){
+          $('#response-panel').show();
+          $('#response').html(message);
+          $('body').waitMe('hide');
         }
     </script>
   </body>

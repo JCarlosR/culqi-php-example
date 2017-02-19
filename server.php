@@ -1,5 +1,7 @@
 <?php
 
+header('Content-Type: application/json');
+
 /**
  * Como crear un cargo a una tarjeta usando Culqi PHP.
  */
