@@ -15,7 +15,7 @@ require 'vendor/culqi/culqi-php/lib/culqi.php';
 use Culqi\Culqi;
 
 // Configurar tu API Key y autenticación
-$SECRET_API_KEY = 'sk_test_UTCQSGcXW8bCyU59';
+$SECRET_API_KEY = 'sk_test_UdpROVuDJkNOSXbU';
 $culqi = new Culqi(array('api_key' => $SECRET_API_KEY));
 
 try {
