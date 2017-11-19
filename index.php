@@ -22,7 +22,7 @@
     <script src="waitMe.min.js"></script>
     <script>
       $("#response-panel").hide();
-      Culqi.publicKey = 'pk_test_vzMuTHoueOMlgUPj';
+      Culqi.publicKey = 'pk_test_l6ugyoLtDgcADigT';
       Culqi.settings({
         title: 'Culqi Store',
         currency: 'PEN',
