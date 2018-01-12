@@ -6,12 +6,12 @@
 
   // Escribir el Webhook en mi archivo
   $myfile = fopen("log/log-webhooks.json", "w") or die("Imposible abrir el archivo.");
-  fwrite($myfile, $input);
+  $bytes = fwrite($myfile, $input);
 
   //Respuesta a Culqi
   http_response_code(200);
   $array = array(
-    "response" => "Webhook de Culqi recibido"
+    "response" => "Webhook de Culqi recibido " . $bytes
   );
   echo json_encode($array);
 ?>
