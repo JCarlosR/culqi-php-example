@@ -1,17 +1,30 @@
 <?php
-  // Recuperar el cuerpo de la solicitud y analizarlo como JSON
-  $input = file_get_contents("php://input");
-  $event_json = json_decode($input);
+
+$mensajeLog = "";
+
+$mensajeLog .= print_r($_POST,true) . "\r\n";
+
+if(strlen($mensajeLog)>0){
+$filename = "pruebasConfirmacion.txt";
+$fp = fopen($filename, "a");
+if($fp) {
+fwrite($fp, $mensajeLog, strlen($mensajeLog));
+fclose($fp);
+}
+?>
+<html>
+<h1>this is the post</h1
+
+<?php
+
+echo $mensajeLog; 
+
+?>
+
+</html>
+<?php
+}
 
 
-  // Escribir el Webhook en mi archivo
-  $myfile = fopen("log/log-webhooks.json", "w") or die("Imposible abrir el archivo.");
-  $bytes = fwrite($myfile, $input);
 
-  //Respuesta a Culqi
-  http_response_code(200);
-  $array = array(
-    "response" => "Webhook de Culqi recibido " . $bytes
-  );
-  echo json_encode($array);
 ?>
